@@ -1,14 +1,14 @@
-const { normalizeURL } = require('./crawl.js');
+const { normalizeURL, getURLsFromHTML } = require('./crawl.js');
 const { test, expect } = require('@jest/globals');
 
-test('normalizeURL strip protocol', () => {
+test('normalizeURL strips protocol', () => {
     const input = 'https://blog.boot.dev/path';
     const actual = normalizeURL(input);
     const expected = 'blog.boot.dev/path';
     expect(actual).toEqual(expected);
 })
 
-test('normalizeURL strip trailing slashes', () => {
+test('normalizeURL strips trailing slashes', () => {
     const input = 'https://blog.boot.dev/path/';
     const actual = normalizeURL(input);
     const expected = 'blog.boot.dev/path';
@@ -22,9 +22,73 @@ test('normalizeURL removes capitals', () => {
     expect(actual).toEqual(expected);
 })
 
-test('normalizeURL strip protocol', () => {
+test('normalizeURL strips protocol', () => {
     const input = 'http://blog.boot.dev/path/';
     const actual = normalizeURL(input);
     const expected = 'blog.boot.dev/path';
+    expect(actual).toEqual(expected);
+})
+
+test('getURLsFromHTML absolute URLs', () => {
+    const inputHTMLBody = `
+        <html>
+            <body>
+                <a href='https://blog.boot.dev/path/'>Boot.dev blog</a>
+            </body>
+        </html>
+    `;
+    const inputBaseURL = 'blog.boot.dev/path/';
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
+    const expected = [
+        'https://blog.boot.dev/path/'
+    ];
+    expect(actual).toEqual(expected);
+})
+
+test('getURLsFromHTML relative URLs', () => {
+    const inputHTMLBody = `
+        <html>
+            <body>
+                <a href='/path/'>Boot.dev blog</a>
+            </body>
+        </html>
+    `;
+    const inputBaseURL = 'https://blog.boot.dev';
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
+    const expected = [
+        'https://blog.boot.dev/path/'
+    ];
+    expect(actual).toEqual(expected);
+})
+
+test('getURLsFromHTML multiple URLs', () => {
+    const inputHTMLBody = `
+        <html>
+            <body>
+                <a href='/path1/'>Boot.dev blog 1</a>
+                <a href='https://blog.boot.dev/path2/'>Boot.dev blog 2</a>
+            </body>
+        </html>
+    `;
+    const inputBaseURL = 'https://blog.boot.dev';
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
+    const expected = [
+        'https://blog.boot.dev/path1/',
+        'https://blog.boot.dev/path2/'
+    ];
+    expect(actual).toEqual(expected);
+})
+
+test('getURLsFromHTML dont include invalid URL', () => {
+    const inputHTMLBody = `
+        <html>
+            <body>
+                <a href='invalid'>Bad URL</a>
+            </body>
+        </html>
+    `;
+    const inputBaseURL = 'https://blog.boot.dev';
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL);
+    const expected = [];
     expect(actual).toEqual(expected);
 })
