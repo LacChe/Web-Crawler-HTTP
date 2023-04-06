@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+  color: white;
+}
+
+body {
+  background-color: #3b3f47;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 317;
+  background-color: #1d1f24;
+  border-radius: 11px;
+  overflow: hidden;
+
+}
+
+.top-section {
+  text-align: center;
+}
+
+.bottom-section {
+  padding: 0  8% 8%;
+}
+
+.footer {
+  background-color: #00080d;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: none;
+  border-radius: 5px;
+  background-color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.top-link-section, .footer {
+  display: flex;
+  justify-content: center;
+}
+
+a > img {
+  width: 30px;
+  height: 30px;
+}
+
+.top-link-section > a > img{
+  margin-right: 10px;
+}
+.email-link, .linkedin-link {
+width: 40%;
+}
+
+
+.email-link > p {
+  color: black;
+}
+
+.linkedin-link {
+  background-color: #0072b1;
+}
+
+a:hover {
+  opacity: 70%;
+}
