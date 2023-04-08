@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0px;
+  font-family: poppins, sans-serif;
 }
 
 .nav {
@@ -44,14 +45,18 @@
   margin: 50px;
 }
 
+.card {
+  position: relative;
+}
+
 .card > img {
   margin-bottom: 10px;
   width: 250px;
 }
 
 .status {
-  position: relative;
-  top: -415;
+  position: absolute;
+  top: 0px;
   z-index: 50;
   margin: 10px;
   padding: 5px;
