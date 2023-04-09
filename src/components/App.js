@@ -1,7 +1,12 @@
 import React from 'react';
+import Text from './Text.js'
+import Game from './Game.js'
 
 export default function App(){
     return(
-        <h1>hi</h1>
+        <div className="app">
+            <Text />
+            <Game />
+        </div>
     )
 }
