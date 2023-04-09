@@ -1,5 +1,6 @@
 import React from 'react';
 import Dice from './Dice.js'
+import Confetti from 'react-confetti'
 
 export default function Game(){
     const [diceList, setDiceList] = React.useState(
@@ -120,6 +121,7 @@ export default function Game(){
                 {diceList.slice(diceList.length/2).map(item => <Dice key={item.id} dice={item} toggleLock={toggleLock}/>)}
             </div>
             <button onClick={roll}>{won ? "Reset Game" : "Roll"}</button>
+            {won ? <Confetti /> : null}
         </div>
     )
 }
