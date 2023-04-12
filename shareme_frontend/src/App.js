@@ -5,7 +5,7 @@ import Home from './container/Home'
 import { fetchUser } from './utils/fetchUser'
 
 const App = () => {
-  const navigate = navigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = fetchUser();
