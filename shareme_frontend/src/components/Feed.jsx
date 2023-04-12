@@ -12,7 +12,6 @@ const Feed = () => {
   const [loading, setLoading] = useState(false);
   const { categoryId } = useParams();
 
-
   useEffect(() => {
     setLoading(true);
     if(categoryId){
@@ -33,6 +32,9 @@ const Feed = () => {
   
 
   if(loading) return <Spinner message='We are adding new ideas to your feed!'/>
+
+  if(!pins?.length) return <h2>No Pins available</h2>
+
   return (
     <div>
       {pins && (
