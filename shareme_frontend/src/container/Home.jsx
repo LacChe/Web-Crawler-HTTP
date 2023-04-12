@@ -9,12 +9,13 @@ import logo from '../assets/logo.png';
 import Pins from './Pins.jsx';
 
 import { userQuery } from '../utils/data.js';
+import { fetchUser } from '../utils/fetchUser';
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState(null)
   const scrollRef = useRef(null);
-  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+  const userInfo = fetchUser();
 
   useEffect(() => {
     const query = userQuery(userInfo?.sub);
@@ -40,7 +41,7 @@ const Home = () => {
         {/* mobile nav */}
         <div className='flex md:hidden flex-row'>
           <div className='p-2 w-full flex flex-row justify-between items-center shadow-md'>
-          <HiMenu font-size={40} className='cursor-pointer' onClick={() => setToggleSidebar(true)}/>
+          <HiMenu fontSize={40} className='cursor-pointer' onClick={() => setToggleSidebar(true)}/>
             <Link to='/'>
               <img src={logo} alt='logo' className='w-28' />
             </Link>
