@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
-import { AiOutlineCloudUpload } from 'react-icons/ai'
-import { MdDelete } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
-import { client } from '../client.js'
-import Spinner from './Spinner.jsx'
-import { categories } from '../utils/data'
+import { client } from '../client.js';
+import Spinner from './Spinner.jsx';
+import { categories } from '../utils/data';
 
 const CreatePin = ({ user }) => {
 
-  const [title, setTitle] = useState('')
-  const [about, setAbout] = useState('')
-  const [destination, setDestination] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [fields, setFields] = useState(false)
-  const [category, setCategory] = useState(null)
-  const [imageAsset, setImageAsset] = useState(null)
-  const [wrongImageType, setWrongImageType] = useState(false)
+  const [title, setTitle] = useState('');
+  const [about, setAbout] = useState('');
+  const [destination, setDestination] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [fields, setFields] = useState(false);
+  const [category, setCategory] = useState(null);
+  const [imageAsset, setImageAsset] = useState(null);
+  const [wrongImageType, setWrongImageType] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const CreatePin = ({ user }) => {
           setLoading(false);
         })
         .catch((error) => {
-          console.log('Image upload error ' + error)
+          console.log('Image upload error ' + error);
         })
       } else {
         setWrongImageType(true);
@@ -66,11 +66,11 @@ const CreatePin = ({ user }) => {
       }
       client.create(doc)
       .then(() => {
-        navigate('/')
+        navigate('/');
       })
     } else {
       setFields(true);
-      setTimeout(() => setFields(false), 2000)
+      setTimeout(() => setFields(false), 2000);
     }
   }
 

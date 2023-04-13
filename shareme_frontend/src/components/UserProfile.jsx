@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google'
+import { GoogleOAuthProvider, googleLogout } from '@react-oauth/google';
 
 import { userCreatedPinsQuery, userQuery, userSavedPinsQuery } from '../utils/data';
 import { client } from '../client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
-import Masonry from 'react-masonry-css';
 
-const randomImage = 'https://source.unsplash.com/1600x900/?nature,photography,technology'
+const randomImage = 'https://source.unsplash.com/1600x900/?nature,photography,technology';
 
 const UserProfile = () => {
 
-  const [user, setUser] = useState(null)
-  const [pins, setPins] = useState(null)
-  const [text, setText] = useState('Created') // created | saved
-  const [activeButton, setActiveButton] = useState('created')
+  const [user, setUser] = useState(null);
+  const [pins, setPins] = useState(null);
+  const [text, setText] = useState('Created'); // created | saved
+  const [activeButton, setActiveButton] = useState('created');
 
   const navigate = useNavigate();
   const { userId } = useParams();
@@ -28,7 +27,7 @@ const UserProfile = () => {
     const query = userQuery(userId);
     client.fetch(query)
     .then((data) => {
-      setUser(data[0])
+      setUser(data[0]);
     })
   }, [userId])
 
@@ -37,13 +36,13 @@ const UserProfile = () => {
       const createdPinsQuery = userCreatedPinsQuery(userId);
       client.fetch(createdPinsQuery)
       .then((data) => {
-        setPins(data)
+        setPins(data);
       })
     } else {
       const savedPinsQuery = userSavedPinsQuery(userId);
       client.fetch(savedPinsQuery)
       .then((data) => {
-        setPins(data)
+        setPins(data);
       })
     }
   }, [text, userId])
@@ -90,8 +89,8 @@ const UserProfile = () => {
             <button 
               type='button'
               onClick={(e) => {
-                setText(e.target.textContent)
-                setActiveButton('created')
+                setText(e.target.textContent);
+                setActiveButton('created');
               }}
               className={`${activeButton === 'created' ? activeButtonStyles : notActiveButtonStyles}`}
             >
@@ -100,8 +99,8 @@ const UserProfile = () => {
             <button 
               type='button'
               onClick={(e) => {
-                setText(e.target.textContent)
-                setActiveButton('saved')
+                setText(e.target.textContent);
+                setActiveButton('saved');
               }}
               className={`${activeButton === 'saved' ? activeButtonStyles : notActiveButtonStyles}`}
             >

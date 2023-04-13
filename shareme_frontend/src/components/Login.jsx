@@ -1,19 +1,18 @@
-import { faGoogle } from 'react-icons/fc';
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from '@react-oauth/google'
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
 import { client } from '../client';
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const createOrGetuser = async (response) => {
+    const createOrGetUser = async (response) => {
         const decoded = jwt_decode(response.credential);
         localStorage.setItem('user', JSON.stringify(decoded));
-        const { name, email, picture, sub } = decoded;
+        const { name, picture, sub } = decoded;
         const doc = {
             _id: sub,
             _type: 'user',
@@ -23,7 +22,7 @@ const Login = () => {
         
         client.createIfNotExists(doc)
             .then(() => {
-                navigate('/', { replace: true })
+                navigate('/', { replace: true });
             })
     }
 
@@ -46,7 +45,7 @@ const Login = () => {
                         </div>
                         <div className='shadow-2xl'>
                             <GoogleLogin
-                                onSuccess={(response) => createOrGetuser(response)}
+                                onSuccess={(response) => createOrGetUser(response)}
                                 onError={() => console.log('GoogleLogin Error')}
                                 cookiePolicy="single_host_origin"
                             />
