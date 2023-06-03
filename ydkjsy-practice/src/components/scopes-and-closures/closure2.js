@@ -5,6 +5,7 @@ const closure2 = () => {
     function toggle(...args) {
         var index = 0;
         return function toggleAndReturn() {
+            if(args.length === 0) return undefined; 
             let ret = args[index];
             index++;
             if(index >= args.length) index = 0;
