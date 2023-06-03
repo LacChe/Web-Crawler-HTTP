@@ -45,7 +45,7 @@ const scopes = () => {
         <ul>
             {padEntries(fruit).map(function listFruit(fruit){ // shadowing fruit
                 // function
-                return (<pre><li>{fruit}</li></pre>)
+                return (<pre key={fruit}><li>{fruit}</li></pre>)
             })}
         </ul>
 
@@ -53,7 +53,7 @@ const scopes = () => {
         <ul>
             {padEntries(vegetables).map(function listVegetables(vegetable){
                 // function
-                return (<pre><li>{vegetable}</li></pre>)
+                return (<pre key={vegetable}><li>{vegetable}</li></pre>)
             })}
         </ul>
     </>
