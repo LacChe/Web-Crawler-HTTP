@@ -60,7 +60,7 @@ const prototypes = () => {
 
   return (
     <>
-        <h2>Prototypes</h2>
+        <h3>Prototypes</h3>
         {slotMachine.spin()}
         <p style={{whiteSpace: 'pre'}}>{slotMachine.display()}</p>
         {slotMachine.spin()}

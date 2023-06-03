@@ -23,7 +23,7 @@ const closures = () => {
 
   return (
     <>
-        <h2>Closures</h2>
+        <h3>Closures</h3>
         <ul>
             <li><pre>range(3,3);  {JSON.stringify(range(3,3))}</pre></li> 
             <li><pre>range(3,8);  {JSON.stringify(range(3,8))}</pre></li> 

@@ -25,7 +25,7 @@ const comparison = () => {
   
   return (
     <>
-        <h2>Comparisons</h2>
+        <h3>Comparisons</h3>
         <h4>{dayStart}~{dayEnd}</h4>
         <ul>
             <li><pre>"7:00" 15   {JSON.stringify(scheduleMeeting("7:00",15))}</pre></li> 
