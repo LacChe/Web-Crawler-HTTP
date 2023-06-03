@@ -4,6 +4,7 @@ import Prototypes from './components/get-started/prototypes.js'
 
 import Scopes from './components/scopes-and-closures/scopes.js'
 import Closure1 from './components/scopes-and-closures/closure1.js'
+import Closure2 from './components/scopes-and-closures/closure2.js'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <h2>Scopes and Closures</h2>  
       <Scopes /> 
       <Closure1 />
+      <Closure2 />
 
     </div>
   );

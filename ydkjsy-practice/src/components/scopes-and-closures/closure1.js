@@ -67,12 +67,14 @@ const closure1 = () => {
   return (
     <>
       <h3>Closure1</h3>
-      <p>11 isPrime: {JSON.stringify(isPrime(11))} | factors: {JSON.stringify(factorize(11))}</p>
-      <p>11 isPrime: {JSON.stringify(isPrime(11))} | factors: {JSON.stringify(factorize(11))}</p>
-      <p>11 isPrime: {JSON.stringify(isPrime(11))} | factors: {JSON.stringify(factorize(11))}</p>
-      <p>12 isPrime: {JSON.stringify(isPrime(12))} | factors: {JSON.stringify(factorize(12))}</p>
-      <p>12 isPrime: {JSON.stringify(isPrime(12))} | factors: {JSON.stringify(factorize(12))}</p>
-      <p>44433739 isPrime: {JSON.stringify(isPrime(44433739))} | factors: {JSON.stringify(factorize(44433739))}</p>
+      <ul>
+        <li><p>11 isPrime: {JSON.stringify(isPrime(11))} | factors: {JSON.stringify(factorize(11))}</p></li>
+        <li><p>11 isPrime: {JSON.stringify(isPrime(11))} | factors: {JSON.stringify(factorize(11))}</p></li>
+        <li><p>11 isPrime: {JSON.stringify(isPrime(11))} | factors: {JSON.stringify(factorize(11))}</p></li>
+        <li><p>12 isPrime: {JSON.stringify(isPrime(12))} | factors: {JSON.stringify(factorize(12))}</p></li>
+        <li><p>12 isPrime: {JSON.stringify(isPrime(12))} | factors: {JSON.stringify(factorize(12))}</p></li>
+        <li><p>44433739 isPrime: {JSON.stringify(isPrime(44433739))} | factors: {JSON.stringify(factorize(44433739))}</p></li>
+      </ul>
     </>
   )
 }
