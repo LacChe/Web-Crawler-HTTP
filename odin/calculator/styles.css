@@ -1,0 +1,45 @@
+* {
+    font-size: 1.2rem;
+}
+
+body {
+    background-color: gray;
+}
+
+#container {
+    width: 300px;
+}
+
+#display {
+    background-color: white;
+    width: 100%;
+    height: 30px;
+    text-align: right;
+}
+
+#buttons {
+    display: flex;
+    width: 100%;
+}
+
+#buttons-grid {
+    flex: 3;
+}
+
+#buttons-grid > div {
+    display: flex;
+    height: 50px;
+}
+
+#buttons-grid > div > button {
+    flex: 1;
+}
+
+#buttons-equals {
+    flex: 1;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+}
