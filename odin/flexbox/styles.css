@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+nav {
+    background-color: #1f2937;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 45px;
+}
+
+a {
+    color: white;
+    margin: 5px;
+}
+
+.section-one {
+    background-color: #1f2937;
+    color: white;
+    padding: 45px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.section-one-info > * {
+    margin: 5px;
+}
+
+.section-one-info > button {
+    background-color: #3882f6;
+    border-style: none;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.img {
+    background-color: gray;
+    width: 600px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-two {
+    padding: 30px 120px;
+}
+
+.section-two > h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-two > div {
+    text-align: center;
+}
+
+.square {
+    border-color: #3882f6;
+    border-style: solid;
+    border-radius: 10px;
+    width: 125px;
+    height: 125px;
+}
+
+.square-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-three {
+    background-color: #e5e7eb;
+    padding: 60px 120px;
+}
+
+.section-four {
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 45px;
+    background-color: #3882f6;
+    color: white;
+}
+
+.author {
+    text-align: right;
+}
+
+.section-four > * {
+    margin: 25px;
+}
+
+.section-four > button {
+    border-radius: 10px;
+    border-style: solid;
+    padding: 2px 20px;
+    color: white;
+    border-color: white;
+    background-color: #3882f6;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 50%;
+}
