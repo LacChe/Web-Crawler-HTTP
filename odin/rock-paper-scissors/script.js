@@ -1,3 +1,29 @@
+
+const textDisplay = document.querySelector('#text');
+const content = document.createElement('div');
+content.textContent = 'Choose Rock Paper or Scissors.';
+
+textDisplay.appendChild(content);
+
+
+const rock = document.querySelector('#rock-button');
+const paper = document.querySelector('#paper-button');
+const scissors = document.querySelector('#scissors-button');
+
+var score = 0;
+
+rock.addEventListener('click', function playRock(e) {
+    play('rock');
+})
+
+paper.addEventListener('click', function playRock(e) {
+    play('paper');
+})
+
+scissors.addEventListener('click', function playRock(e) {
+    play('scissors');
+})
+
 function playRound(playerSelection, computerSelection) {
     let win;
     switch(playerSelection) {
@@ -58,29 +84,23 @@ function getComputerChoice() {
     return choices[choiceIndex];
 }
 
-function game() {
-    var score = 0;
-    for(let i = 0; i < 5; i++) {
-        const playerSelection = prompt('input "rock" "paper" or "scissors"');
-        const computerSelection = getComputerChoice();
-        let win = playRound(playerSelection, computerSelection);
-        score += typeof win === 'string' ? 0 : win;
-        switch (win) {
-            case -1:
-                console.log(`Turn ${i} Score: ${score} | `,`You Lose, ${computerSelection} beats ${playerSelection}.`);
-                break;
-            case 0:
-                console.log(`Turn ${i} Score: ${score} | `,`Draw!`);
-                break;
-            case 1:
-                console.log(`Turn ${i} Score: ${score} | `,`You Win, ${playerSelection} beats ${computerSelection}.`);
-                break;
-            default:
-                console.log(`error: "win" is ${win}`);
-                break;
-            
-        }
+function play(playerSelection) {
+    const computerSelection = getComputerChoice();
+    let win = playRound(playerSelection, computerSelection);
+    score += typeof win === 'string' ? 0 : win;
+    switch (win) {
+        case -1:
+            textDisplay.textContent = `Score: ${score} | You Lose, ${computerSelection} beats ${playerSelection}.`;
+            break;
+        case 0:
+            textDisplay.textContent = `Score: ${score} | Draw!`;
+            break;
+        case 1:
+            textDisplay.textContent = `Score: ${score} | You Win, ${playerSelection} beats ${computerSelection}.`;
+            break;
+        default:
+            textDisplay.textContent = `error: "win" is ${win}`;
+            break;
+        
     }
 }
-
-game();
