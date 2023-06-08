@@ -1,0 +1,50 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    color: rgb(122, 80, 0);
+}
+
+button {
+    margin: 20px;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    cursor: pointer;
+    border: 2px rgb(122, 80, 0) solid;
+    border-radius: 30px;
+}
+
+button:hover {
+    scale: 1.1;
+}
+
+body {
+    background-color: blanchedalmond;
+}
+
+.page-block {
+    margin: 20px;
+    background-color: white;
+    padding: 20px;
+    border: 2px rgb(122, 80, 0) solid;
+    border-radius: 30px;
+}
+
+.page-block > * {
+    margin: 20px;
+}
+
+.dish-inner-div {
+    display: flex;
+    gap: 30px;
+}
+
+.dish-inner-div > p {
+    font-size: 1.5rem;
+}
+
+img {
+    width: 90%;
+    border: 2px rgb(122, 80, 0) solid;
+    border-radius: 20px;
+}
