@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    margin: 10px 10px 10px 0;
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    background-color: burlywood;
+    padding: 10px;
+    gap: 20px;
+    top: 0px;
+}
+
+.main {
+    display: flex;
+    flex-grow: 1;
+}
+
+.side-bar {
+    background-color: antiquewhite;
+    width: 200px;
+    padding: 20px 40px;
+}
+
+.projects-side-bar {
+    margin: 20px 0px;
+}
+
+.projects-side-bar-buttons {
+    display: flex;
+    flex-direction: column;
+}
