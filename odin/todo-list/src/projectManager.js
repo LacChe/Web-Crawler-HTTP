@@ -1,3 +1,4 @@
+import newManager from './todoManager.js'
 
 var projects = [
     createProject('default')
@@ -6,7 +7,7 @@ var projects = [
 function createProject(name){
     let project = {
         name,
-        tasks: []
+        todos: newManager()
     }
     return project;
 }
@@ -18,7 +19,7 @@ var getDefaultProject = function getDefaultProject(){
 }
 
 var getProject = function getProject(filterName){
-    return projects.filter((p) => p.name === filterName);
+    return projects.filter((p) => p.name === filterName)[0];
 }
 
 var addProject = function addProject(filterName){

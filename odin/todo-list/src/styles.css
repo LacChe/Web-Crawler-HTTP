@@ -5,6 +5,25 @@
 
 button {
     margin: 10px 10px 10px 0;
+    padding: 0px 5px;
+    background-color: orange;
+    border-style: none;
+    border-radius: 5px;
+    min-width: 80px;
+    min-height: 20px;
+}
+
+button:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.todo-list-item > button, .projects-side-bar-buttons > div > button:last-child {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    min-width: 0px;
+    min-height: 0px;
 }
 
 h2 {
@@ -43,4 +62,14 @@ h2 {
 .projects-side-bar-buttons {
     display: flex;
     flex-direction: column;
+}
+
+.todo-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content {
+    padding: 20px;
 }
