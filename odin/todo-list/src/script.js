@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import projectManager from './projectManager.js'
-import todoManager from './todoManager.js'
 import './styles.css';
 
 document.body.appendChild(container());

@@ -2,7 +2,7 @@ export default function newManager() {
 
     var todos = [];
 
-    function createTodo(name, description, dueDate, priority) {
+    function createTodo(name, description, dueDate) {
         let todo = {
             id: Date.now() + Math.random() * 1000,
             name,
@@ -27,4 +27,4 @@ export default function newManager() {
     }
 
     return manager;
-};
+}
