@@ -1,0 +1,50 @@
+.hidden {
+    display: none
+}
+
+.mobile-menu-container {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.image-slider-container {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.image-slider-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.slider-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.slider-buttons > button {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.button-index-selected {
+    transition-property: color;
+    transition: 1s;
+    background-color: black;
+}
+
+.slider-image {
+    background-color: aquamarine;
+    min-width: 200px;
+    max-width: 200px;
+}
