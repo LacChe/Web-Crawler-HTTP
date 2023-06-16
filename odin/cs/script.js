@@ -324,9 +324,116 @@ class Tree {
 
         return node;
     }
+
+    remove(val) {
+        let parent = this.findParent(val);
+        let target = this.find(val);
+
+        // both null
+        if(target.left === null && target.right === null) {
+            if(parent.left !== null && parent.left.val === val) {
+                parent.left = null;
+                return target;
+            } else if(parent.right !== null && parent.right.val === val) {
+                parent.right = null;
+                return target;
+            }
+        }
+
+        // left null
+        if(target.left === null) {
+            if(parent.left !== null && parent.left.val === val) {
+                parent.left = target.right;
+                return target;
+            } else if(parent.right !== null && parent.right.val === val) {
+                parent.right = target.right;
+                return target;
+            }
+        }
+
+        // right null
+        if(target.right === null) {
+            if(parent.left !== null && parent.left.val === val) {
+                parent.left = target.left;
+                return target;
+            } else if(parent.right !== null && parent.right.val === val) {
+                parent.right = target.left;
+                return target;
+            }
+        }
+
+        // neither null
+        let nextBiggest = target.right;
+        while(nextBiggest.left !== null) {
+            nextBiggest = nextBiggest.left;
+        }
+        let nextBiggestParent = this.findParent(nextBiggest.val);
+
+        if(nextBiggestParent.left !== null && nextBiggestParent.left.val === nextBiggest.val) {
+            nextBiggestParent.left = nextBiggest.right;
+        } else if(nextBiggestParent.right !== null && nextBiggestParent.right.val === nextBiggest.val) {
+            nextBiggestParent.right = nextBiggest.right;
+        }
+
+        nextBiggest.left = target.left;
+        nextBiggest.right = target.right;
+
+        if(parent.left !== null && parent.left.val === val) {
+            parent.left = nextBiggest;
+            return target;
+        } else if(parent.right !== null && parent.right.val === val) {
+            parent.right = nextBiggest;
+            return target;
+        }
+    }
+
+    find(val, node = this.root) {
+        if(node.val === val) return node;
+
+        let retNode;
+
+        if(node.left !== null) {
+            retNode = this.find(val, node.left);
+            if(retNode !== null) return retNode;
+        } 
+        if(node.right !== null) {
+            retNode = this.find(val, node.right);
+            if(retNode !== null) return retNode;
+        }
+
+        return null;
+    }
+
+    findParent(val, node = this.root) {
+        if(node.left !== null && node.left.val === val) return node;
+        if(node.right !== null && node.right.val === val) return node;
+
+        let retNode;
+
+        if(node.left !== null) {
+            retNode = this.findParent(val, node.left);
+            if(retNode !== null) return retNode;
+        } 
+        if(node.right !== null) {
+            retNode = this.findParent(val, node.right);
+            if(retNode !== null) return retNode;
+        }
+
+        return null;
+    }
+
 }
 
-let testTree = new Tree(genNumArray(17, 100));
-testTree.prettyPrint();
-testTree.insert(100);
-testTree.prettyPrint();
+function printBSTTest() {
+    let testTree = new Tree(genNumArray(7, 100));
+    testTree.prettyPrint();
+    testTree.insert(80);
+    testTree.prettyPrint();
+    testTree.remove(testTree.root.left.val);
+    testTree.prettyPrint();
+    console.log('*******************************************************');
+}
+
+printBSTTest();
+
+// *******************************************************
