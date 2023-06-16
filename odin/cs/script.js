@@ -223,6 +223,7 @@ function genList() {
 function printLLTests() {
     let listOne = genList();
     
+    console.log('Linked Lists');
     console.log('size: ' + listOne.size() + ', ' + listOne.toString());
     console.log('head: ' + JSON.stringify(listOne.head()));
     console.log('tail: ' + JSON.stringify(listOne.tail()));
@@ -240,8 +241,92 @@ function printLLTests() {
     console.log('insert 2 100: ' + listOne.toString());
     listOne.remove(3);
     console.log('remove 3: ' + listOne.toString());
+    console.log('*******************************************************');
 }
 
 printLLTests();
 
 // binary search tree *******************************************************
+
+class Node {
+    constructor(val, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class Tree {
+    root;
+    constructor(arr, sorted = false) {
+        let sortedArr = sorted ? arr : mergeSort(arr);
+        let uniqueArr = this.removeDuplicates(sortedArr);
+
+        this.root = this.buildTree(uniqueArr, this.root);
+    }
+
+    removeDuplicates(sortedArr) {
+        if(sortedArr.length < 1) return null;
+
+        let newArr = [sortedArr[0]];
+        for(let i = 1; i < sortedArr.length; i++) {
+            if(sortedArr[i] !== sortedArr[i-1]) {
+                newArr.push(sortedArr[i]);
+            }
+        }
+        return newArr;
+    }
+
+    buildTree(arr, parent) {
+        if(arr.length < 1) return null;
+
+        if(arr.length === 1) {
+            parent = new Node(arr[0]);
+        } else if(arr.length === 2) {
+            parent = new Node(arr[1]);
+            parent.left = new Node(arr[0]);
+        } else if(arr.length === 3) {
+            parent = new Node(arr[1]);
+            parent.left = new Node(arr[0]);
+            parent.right = new Node(arr[2]);
+        } else if(arr.length > 2) {
+            parent = new Node(arr[Math.trunc(arr.length / 2)]);
+            let leftArr = arr.slice(0, Math.trunc(arr.length / 2));
+            let rightArr = arr.slice(Math.trunc(arr.length / 2 + 1));
+            parent.left = this.buildTree(leftArr, parent.left);
+            parent.right = this.buildTree(rightArr, parent.right);
+        }
+        
+        return parent;
+    }
+    
+    prettyPrint(node = this.root, prefix = "", isLeft = true) {
+        if (node === null) {
+          return;
+        }
+        if (node.right !== null) {
+            this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+        }
+        console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.val}`);
+        if (node.left !== null) {
+            this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+        }
+    }
+
+    insert(val, node = this.root) {
+        if (node === null) return new Node(val);
+       
+        if (val < node.val) {
+          node.left = this.insert(val, node.left);
+        } else {
+          node.right = this.insert(val, node.right);
+        }
+
+        return node;
+    }
+}
+
+let testTree = new Tree(genNumArray(17, 100));
+testTree.prettyPrint();
+testTree.insert(100);
+testTree.prettyPrint();
