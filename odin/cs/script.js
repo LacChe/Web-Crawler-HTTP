@@ -220,22 +220,28 @@ function genList() {
     return list;
 }
 
-let listOne = genList();
+function printLLTests() {
+    let listOne = genList();
+    
+    console.log('size: ' + listOne.size() + ', ' + listOne.toString());
+    console.log('head: ' + JSON.stringify(listOne.head()));
+    console.log('tail: ' + JSON.stringify(listOne.tail()));
+    listOne.append(21);
+    console.log('append: 21, ' + listOne.size() + ', ' + listOne.toString());
+    listOne.preppend(-7);
+    console.log('preppend: -7, ' + listOne.size() + ', ' + listOne.toString());
+    console.log('pop: ' + listOne.pop() + ', ' + listOne.toString());
+    console.log('at 3: ' + JSON.stringify(listOne.at(3)) + ', ' + listOne.toString());
+    console.log('find 4: ' + listOne.find(4) + ', ' + listOne.toString());
+    console.log('find 5: ' + listOne.find(5) + ', ' + listOne.toString());
+    console.log('contains 4: ' + listOne.contains(4) + ', ' + listOne.toString());
+    console.log('contains 5: ' + listOne.contains(5) + ', ' + listOne.toString());
+    listOne.insert(2, 100);
+    console.log('insert 2 100: ' + listOne.toString());
+    listOne.remove(3);
+    console.log('remove 3: ' + listOne.toString());
+}
 
-console.log('size: ' + listOne.size() + ', ' + listOne.toString());
-console.log('head: ' + JSON.stringify(listOne.head()));
-console.log('tail: ' + JSON.stringify(listOne.tail()));
-listOne.append(21);
-console.log('append: 21, ' + listOne.size() + ', ' + listOne.toString());
-listOne.preppend(-7);
-console.log('preppend: -7, ' + listOne.size() + ', ' + listOne.toString());
-console.log('pop: ' + listOne.pop() + ', ' + listOne.toString());
-console.log('at 3: ' + JSON.stringify(listOne.at(3)) + ', ' + listOne.toString());
-console.log('find 4: ' + listOne.find(4) + ', ' + listOne.toString());
-console.log('find 5: ' + listOne.find(5) + ', ' + listOne.toString());
-console.log('contains 4: ' + listOne.contains(4) + ', ' + listOne.toString());
-console.log('contains 5: ' + listOne.contains(5) + ', ' + listOne.toString());
-listOne.insert(2, 100);
-console.log('insert 2 100: ' + listOne.toString());
-listOne.remove(3);
-console.log('remove 3: ' + listOne.toString());
+printLLTests();
+
+// binary search tree *******************************************************
