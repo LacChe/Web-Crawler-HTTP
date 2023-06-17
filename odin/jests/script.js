@@ -45,8 +45,34 @@ function caesarCipher(string, shift) {
     }).join('');
 }
 
-function analyzeArray() {
+function analyzeArray(arr) {
 
+    let allAreNums = true;
+    arr.map(i => {
+        if(isNaN(i)) allAreNums = false
+    });
+    if(!allAreNums) return null;
+
+    let sum = 0;
+    let min;
+    let max;
+
+    arr.map(i => {
+        sum += i;
+
+        if(!min) min = i;
+        if(!max) max = i;
+
+        if(i < min) min = i;
+        if(i > max) max = i;
+    });
+
+    return {
+        average: sum / arr.length,
+        min,
+        max,
+        length: arr.length
+      };
 }
 
 export { capitalize, reverseString, calculator, caesarCipher, analyzeArray }

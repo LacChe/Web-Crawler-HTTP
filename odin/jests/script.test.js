@@ -30,3 +30,14 @@ test('caesarCipher', () => {
     expect(caesarCipher('aBc', 3)).toBe('dEf');
     expect(caesarCipher('Defend the east wall of the castle!', 1)).toBe('Efgfoe uif fbtu xbmm pg uif dbtumf!');
 });
+
+test('analyzeArray', () => {
+    let object = {
+        average: 4,
+        min: 1,
+        max: 8,
+        length: 6
+      };
+      expect(analyzeArray([1,8,3,4,2,6])).toStrictEqual(object);
+      expect(analyzeArray([1,8,3,4,'a',6])).toStrictEqual(null);
+});
