@@ -27,8 +27,22 @@ function calculator() {
     }
 }
 
-function caesarCipher() {
-
+function caesarCipher(string, shift) {
+    if(shift < 0) return null;
+    return string.split('').map((char) => {
+        if(
+            !(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) &&
+            !(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90)
+        ) {
+            return char;
+        }
+        let shiftedCharCode = char.charCodeAt(0) + shift;
+        if(
+            !(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) &&
+            !(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90)
+        ) shiftedCharCode -= 26;
+        return String.fromCharCode(shiftedCharCode);
+    }).join('');
 }
 
 function analyzeArray() {

@@ -22,3 +22,11 @@ test('calculator', () => {
     expect(calc.multiply(1, 2)).toBe(2);
     expect(calc.multiply(6, -2)).toBe(-12);
 });
+
+test('caesarCipher', () => {
+    expect(caesarCipher('abc', -1)).toBe(null);
+    expect(caesarCipher('', 1)).toBe('');
+    expect(caesarCipher('abc', 3)).toBe('def');
+    expect(caesarCipher('aBc', 3)).toBe('dEf');
+    expect(caesarCipher('Defend the east wall of the castle!', 1)).toBe('Efgfoe uif fbtu xbmm pg uif dbtumf!');
+});
