@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#a1 {
+    transform: rotate(45deg);
+}
+
+#a2 {
+    transform: scaleY(0.5);
+}
+
+#a3 {
+    transform: skewX(45deg);
+}
+
+#a4 {
+    transform: translateX(50px);
+}
+
+#a5 {
+    transform: rotate3d(1, 1, 1, 45deg);
+}
+
+#a6 {
+    transform: perspective(200px) translateZ(150px);
+}
