@@ -1,22 +1,16 @@
-// App.js
+// FavoriteInput.js
 
-import React, { useState } from "react";
+import React from "react";
 
-const App = () => {
-  const [heading, setHeading] = useState("Magnificent Monkeys");
-
-  const clickHandler = () => {
-    setHeading("Radical Rhinos");
-  };
+const FavoriteInput = ({ onChange: onInputChange, id }) => {
+  const inputHandler = (event) => onInputChange(event.target.value);
 
   return (
-    <>
-      <button type="button" onClick={clickHandler}>
-        Click Me
-      </button>
-      <h1>{heading}</h1>
-    </>
+    <label htmlFor={id}>
+      What is your favorite wild animal?
+      <input id={id} onChange={inputHandler} />
+    </label>
   );
 };
 
-export default App;
+export default FavoriteInput;
