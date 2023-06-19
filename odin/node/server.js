@@ -1,22 +1,10 @@
-const https = require('https');
+const fs = require('fs');
 
-const options = {
-  hostname: 'example.com',
-  port: 443,
-  path: '/todos',
-  method: 'GET',
-};
+const content = '\nEven More content!';
 
-const req = https.request(options, res => {
-  console.log(`statusCode: ${res.statusCode}`);
-
-  res.on('data', d => {
-    process.stdout.write(d);
-  });
+fs.appendFile('./test.txt', content, err => {
+  if (err) {
+    console.error(err);
+  }
+  // file written successfully
 });
-
-req.on('error', error => {
-  console.error(error);
-});
-
-req.end();
