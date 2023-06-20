@@ -4,8 +4,6 @@ const Schema = mongoose.Schema;
 
 const GenreSchema = new Schema({
   name: { type: String, required: true, min: 3, max: 100 },
-  summary: { type: String, required: true },
-  isbn: { type: String, required: true },
   genre: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
 });
 
