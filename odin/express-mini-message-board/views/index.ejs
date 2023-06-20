@@ -9,8 +9,8 @@
     <p>Welcome to <%= title %></p>
     <a href="/new">New</a>
     <% for(let message of messages) { %>
-      <p><strong><%= message.text %></strong> <%= message.user %></p>
-      <p><%= message.added %></p>
+      <p><strong><%= message.message %></strong> <%= message.name %></p>
+      <p><%= message.date %></p>
       <hr />
     <% } %>
   </body>
