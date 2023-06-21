@@ -13,7 +13,7 @@ const ItemSchema = new Schema({
 // Virtual for item's URL
 ItemSchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
-  return `/item/${this._id}`;
+  return `/items/${this._id}`;
 });
 
 // Export model
