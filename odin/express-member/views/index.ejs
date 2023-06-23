@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <% if (user) {%>
+    <h1>WELCOME BACK <%= user.username %></h1>
+    <a href="/log-out">LOG OUT</a>
+    <form method="POST" action="/new-message">
+        <label for="message">Add a Message: </label>
+        <input id="message" name="message" />
+        <button type="submit">Send</button>
+    </form>
+    <% for(let message of messages) { %>
+      <p><strong><%= message.message %></strong> <%= message.user.username %></p>
+      <p><%= message.date %></p>
+      <hr />
+    <% } %>
+  <% } else { %>
+    <h1>please log in</h1>
+    <form action="/log-in" method="POST">
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <button>Log In</button>
+    </form>
+    <a href="/sign-up">Sign Up</a>
+    <% for(let message of messages) { %>
+      <p><strong><%= message.message %></strong> Login to see user</p>
+      <p><%= message.date %></p>
+      <hr />
+    <% } %>
+  <%}%>
+</body>
+</html>

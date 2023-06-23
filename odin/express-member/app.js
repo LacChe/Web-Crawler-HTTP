@@ -7,23 +7,17 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+
+const User = require('./models/user.js');
+const Message = require('./models/message.js');
 
 const mongoDb = process.env.MONGO_DB_STRING;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
-const User = mongoose.model(
-  "User",
-  new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true }
-  })
-);
-
 const app = express();
-app.set("views", __dirname);
+app.set("views", path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
@@ -35,18 +29,14 @@ passport.use(
     new LocalStrategy(async(username, password, done) => {
       try {
         const user = await User.findOne({ username: username });
-        console.log('user', user);
         if (!user) {
-          console.log('!user');
           return done(null, false, { message: "Incorrect username" });
         };
         bcrypt.compare(password, user.password, (err, res) => {
             if (res) {
-                console.log('match');
               // passwords match! log user in
               return done(null, user)
             } else {
-                console.log('no', password, user.password);
               // passwords do not match!
               return done(null, false, { message: "Incorrect password" })
             }
@@ -70,11 +60,19 @@ passport.deserializeUser(async function(id, done) {
     };
 });
 
-app.get("/", (req, res) => {
-    res.render("index", { user: req.user });
+app.get("/", async function(req, res) {
+    const messages = await Message.find().populate("user");
+    console.log(messages)
+    res.render("index", { user: req.user, messages: messages.reverse() });
 });
-app.get("/sign-up", (req, res) => res.render("sign-up-form"));
 
+app.post("/new-message", async function(req, res, next) {
+  const msg = new Message({message: req.body.message, user: req.user._id, date: new Date()})
+  await msg.save();
+  res.redirect('/');
+});
+
+app.get("/sign-up", (req, res) => res.render("sign-up-form"));
 app.post("/sign-up", async (req, res, next) => {
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         if(err) {
