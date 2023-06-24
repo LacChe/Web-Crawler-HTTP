@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+require("./mongoConfig");
 
 app.use(express.urlencoded({ extended: false }));
 
