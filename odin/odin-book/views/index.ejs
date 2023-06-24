@@ -8,14 +8,44 @@
   <% if (user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
     <a href="/auth/logout">LOG OUT</a>
+    <% if (requests) {%>
+      <p>Friend Requests:</p>
+      <% for(let request of requests) { %>
+        <p><%= request.from.username %></p>
+        <form action=<%= "/friend-request-confirm/"+request.from._id %> method="POST">
+          <button>Yes</button>
+        </form>
+        <form action=<%= "/friend-request-deny/"+request.from._id %> method="POST">
+          <button>No</button>
+        </form>
+      <% } %>
+    <%}%>
+    <form action="/add-friend" method="POST">
+      <label for="friendname">Add Friend</label>
+      <input name="friendname" placeholder="username" type="text" />
+      <button>Add</button>
+    </form>
+    <form action="/post" method="POST">
+      <label for="message">Message</label>
+      <input name="message" placeholder="message" type="text" />
+      <button>Post</button>
+    </form>
+    <hr />
+    <% if (posts) {%>
+      <% for(let post of posts) { %>
+        <p><strong><%= post.message %></strong> <%= post.user.username %></p>
+        <p><%= post.date %></p>
+        <hr />
+      <% } %>
+    <%}%>
   <% } else { %>
-    <h1>please log in</h1>
+    <h1>Please Login</h1>
     <form action="/auth/login" method="POST">
       <label for="username">Username</label>
       <input name="username" placeholder="username" type="text" />
       <label for="password">Password</label>
       <input name="password" type="password" />
-      <button>Log In</button>
+      <button>Login</button> <a href="/auth/signup">Register</a>
     </form>
   <%}%>
 </body>
