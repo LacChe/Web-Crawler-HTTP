@@ -8,33 +8,45 @@
   <% if (user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
     <a href="/auth/logout">LOG OUT</a>
-    <% if (requests) {%>
+    <% if (requests.length > 0) {%>
       <p>Friend Requests:</p>
       <% for(let request of requests) { %>
         <p><%= request.from.username %></p>
-        <form action=<%= "/friend-request-confirm/"+request.from._id %> method="POST">
+        <form action=<%= "/user/request-confirm/"+request._id %> method="POST">
           <button>Yes</button>
         </form>
-        <form action=<%= "/friend-request-deny/"+request.from._id %> method="POST">
+        <form action=<%= "/user/request-deny/"+request._id %> method="POST">
           <button>No</button>
         </form>
       <% } %>
     <%}%>
-    <form action="/add-friend" method="POST">
-      <label for="friendname">Add Friend</label>
+    <form action="/user/add-friend" method="POST">
+      <label for="friendname">Add Friend:</label>
       <input name="friendname" placeholder="username" type="text" />
       <button>Add</button>
     </form>
     <form action="/post" method="POST">
-      <label for="message">Message</label>
+      <label for="message">Message:</label>
       <input name="message" placeholder="message" type="text" />
       <button>Post</button>
     </form>
     <hr />
     <% if (posts) {%>
       <% for(let post of posts) { %>
-        <p><strong><%= post.message %></strong> <%= post.user.username %></p>
-        <p><%= post.date %></p>
+        <p>Content: <strong><%= post.message %></strong> User: <%= post.user.username %></p>
+        <p>Date posted: <%= post.date %></p>
+        <form action=<%= "/post/"+post._id+"/like" %> method="POST">
+          <button>Likes: <%= post.likes.length %></button>
+        </form>
+        <form action=<%= "/post/"+post._id+"/comment" %> method="POST">
+          <input name="comment" placeholder="comment" type="text" />
+          <button>Comment</button>
+        </form>
+        <% if (comments.get(post._id.toString())) {%>
+          <% for(let comment of comments.get(post._id.toString())) { %>
+            <p><%= comment.user.username %>: <strong><%= comment.comment %></strong> <%= comment.date %></p>
+          <% } %>
+        <%}%>
         <hr />
       <% } %>
     <%}%>
