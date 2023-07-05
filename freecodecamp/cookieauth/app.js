@@ -3,12 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 
 var app = express();
+
+app.use(cors({
+  origin: ['http://localhost:3001','https://localhost:3001'],
+  'Access-Control-Allow-Origin': ['http://localhost:3001','https://localhost:3001'],
+  credentials: true,
+  exposedHeaders: ['Set-Cookie', 'Date', 'ETag']
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
