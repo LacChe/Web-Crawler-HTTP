@@ -7,7 +7,6 @@ import { parseError, sessionizeUser } from "../util/helpers";
 const userRoutes = express.Router();
 
 userRoutes.post("/", async (req, res) => {
-  console.log(123);
     try {
         const { username, email, password } = req.body
         // await Joi.validate({ password }, signUp);
