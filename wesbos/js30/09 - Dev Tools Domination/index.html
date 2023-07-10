@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <script>
+      const dogs = [
+        { name: "Snickers", age: 2 },
+        { name: "hugo", age: 8 },
+      ];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+      // clearing
+      console.clear();
 
-    // Regular
+      // Regular
+      console.log("hello");
 
-    // Interpolated
+      // Interpolated
+      console.log("%s hello %s", 1, 2);
 
-    // Styled
+      // Styled
+      console.log("hel%clo", "color: blue");
 
-    // warning!
+      // warning!
+      console.warn("hello");
 
-    // Error :|
+      // Error :|
+      console.error("hello");
 
-    // Info
+      // Info
+      console.info("hello");
 
-    // Testing
+      // Testing
+      console.assert(1 !== 1, "hello");
 
-    // clearing
+      // Viewing DOM Elements
+      console.log(document.querySelector("p"));
+      //console.dir(document.querySelector("p"));
 
-    // Viewing DOM Elements
+      // Grouping together
+      dogs.forEach((d) => {
+        console.groupCollapsed(d.name);
+        console.log(d.name);
+        console.log(d.age);
+        console.log(d.age * 7);
+        console.groupEnd(d.name);
+      });
 
-    // Grouping together
+      // counting
+      console.count("hello");
+      console.count("hello");
+      console.count("hello");
+      console.count("hello");
 
-    // counting
-
-    // timing
-
-  </script>
-</body>
+      // timing
+      console.time("hello");
+      let a = 1;
+      for (let i = 1; i < 1000000; i++) {
+        a *= i * i * i * i * i * i * i * i * i * i * i * i * i * i * i * i * i;
+      }
+      console.timeEnd("hello");
+      console.log(a);
+    </script>
+  </body>
 </html>
